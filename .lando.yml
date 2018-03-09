@@ -1,0 +1,8 @@
+name: relkb
+recipe: pantheon
+config:
+  framework: drupal8
+  xdebug: true
+  env: dev
+  site: relkb
+  id: cc74c379-335a-44f5-92fb-8d3e2b587e8b
