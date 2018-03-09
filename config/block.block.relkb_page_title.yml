@@ -1,0 +1,20 @@
+uuid: a2e6d5f2-2cd7-40af-9a91-834f58d32325
+langcode: en
+status: true
+dependencies:
+  theme:
+    - relkb
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: relkb_page_title
+theme: relkb
+region: content
+weight: -50
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

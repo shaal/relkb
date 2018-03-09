@@ -1,0 +1,22 @@
+uuid: 03297b32-316b-4fb7-ab20-cbe32cf27ad5
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - relkb
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: relkb_breadcrumbs
+theme: relkb
+region: header
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

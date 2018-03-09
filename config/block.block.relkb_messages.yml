@@ -1,0 +1,22 @@
+uuid: 9f227124-5e8b-41f2-be98-766ba0a43530
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - relkb
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: relkb_messages
+theme: relkb
+region: header
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

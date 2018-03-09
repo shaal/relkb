@@ -1,0 +1,22 @@
+uuid: cb8edf0d-479b-493e-86c2-d65675b78400
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - relkb
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: relkb_help
+theme: relkb
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,20 @@
+uuid: e496e9cb-77ae-43b9-ab4e-2d679235c7ba
+langcode: en
+status: true
+dependencies:
+  theme:
+    - relkb
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: relkb_local_actions
+theme: relkb
+region: content
+weight: -20
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 40a41db3-e87b-40a4-89bc-1e74e30e190e
+langcode: en
+status: true
+dependencies:
+  theme:
+    - relkb
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: relkb_local_tasks
+theme: relkb
+region: content
+weight: -40
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

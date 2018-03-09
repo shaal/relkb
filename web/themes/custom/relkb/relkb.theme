@@ -1,0 +1,313 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the Pattern Lab theme.
+ */
+
+
+use Drupal\taxonomy\Entity\Term;
+
+function relkb_theme_suggestions_page_alter(&$suggestions, &$vars) {
+
+    if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical' && $tid = \Drupal::routeMatch()->getRawParameter('taxonomy_term')) {
+        $term = Term::load($tid);
+        $suggestions[] = 'page__taxonomy__' . $term->getVocabularyId();
+    }
+
+    // https://www.drupal.org/node/2521876
+    // Add content type suggestions for pages
+    if ($node = \Drupal::request()->attributes->get('node')) {
+        array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
+    }
+    // http://drupal.stackexchange.com/questions/205567/template-suggestions-based-off-url-alias-drupal-8
+    // Add suggestions according to path
+    $current_path = \Drupal::service('path.current')->getPath();
+    $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+    $path_alias = trim($result, '/');
+    $path_alias = str_replace(['/','-'], '_', $path_alias);
+
+    $suggestions[] = 'page__path_alias__'.$path_alias;
+
+    if ($node = \Drupal::routeMatch()->getParameter('node')) {
+        $content_type = $node->bundle();
+        $suggestions[] = 'page__'.$content_type;
+    }
+}
+
+/*
+function relkb_preprocess_node(&$variables) {
+    print('?name?');
+    dsm ($variables['elements']['#node']);
+//    if ($variables['elements']['#node']['#field_name'] == 'field_clas_premium_ref') {
+//        $variables['elements']['#node'];
+//    }
+}
+*/
+
+/*
+function relkb_theme_suggestions_field_alter(&$suggestions, &$vars) {
+  // name pattern
+  // field--[type]---bundle--[bundle]---type--[type]---name--[name]
+  $suggestions[] = '------ above is relkb suggestions -------';
+  $suggestions[] = 'field__type__' . $variables['element']['#field_type'];
+  $suggestions[] = 'field__name__' . $variables['element']['#field_name'];
+  $suggestions[] = 'field__bundle__' . $variables['element']['#bundle'];
+  $suggestions[] = '------ end of relkb suggestions -------';
+}
+*/
+
+/**
+ * Implements hook_preprocess_user().
+ */
+/*
+function relkb_preprocess_user(&$variables) {
+    // @var User $account
+    $account = $variables['elements']['#user'];
+
+    $variables['username'] = $account->getDisplayName();
+}
+*/
+
+//https://drupal.stackexchange.com/questions/226314/restrict-content-to-a-user-role-in-a-template-file/226318
+/**
+ * Implements hook_template_preprocess_default_variables_alter().
+ *
+ * @see user_user_login()
+ * @see user_user_logout()
+ */
+function relkb_preprocess_default_variables_alter(&$variables) {
+    $user = \Drupal::currentUser();
+
+    $variables['user'] = clone $user;
+    // Remove password and session IDs, since themes should not need nor see them.
+    unset($variables['user']->pass, $variables['user']->sid, $variables['user']->ssid);
+
+    $variables['is_admin'] = $user->hasPermission('access administration pages');
+    $variables['logged_in'] = $user->isAuthenticated();
+}
+
+/*
+function relkb_preprocess_html (&$variables) {
+
+   // Load specific library for pages with html attribute of RTL
+   if ($variables['html_attributes']['dir'] == 'rtl') {
+       $variables['#attached']['library'][] = 'relkb/rtl';
+       $variables['langdir'] = 'rtl';
+   } else
+       // Load specific library for pages with html attribute of LTR
+       if ($variables['html_attributes']['dir'] == 'ltr') {
+           $variables['#attached']['library'][] = 'relkb/ltr';
+           $variables['langdir'] = 'ltr';
+       }
+
+
+   $parent_term_title = '';
+
+   // Find term's parent, and if no parent - the term itself
+   // Get the image that belong to that parent.
+   if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical') {
+       $term_id = \Drupal::routeMatch()->getRawParameter('taxonomy_term');
+       $ancestors = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadAllParents($term_id);
+       foreach ($ancestors as $term) {
+           $parent_tid = $term->id();
+       }
+       $variables['parent_term'] = $parent_tid;
+
+       $term_load = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->load($parent_tid);
+       $parent_term_title = $term_load->getName();
+       // $parent_term_image_field = $term_load->get('field_tmwnt_qtgwryh');
+       // $variables['parent_term_image'] = $parent_term_image_field;
+   }
+
+   // Setting class for background image per specific node title or
+   // the parent of current taxonomy term
+   // 1. If parent term is set - use it as name to add to body class, if not -
+   // 2. Get current page title
+   // 3. Transliterate page title
+   // 4. Add title as a class name in body (in order to choose background image)
+   // https://drupal.stackexchange.com/a/250205
+   $title_before_cleaning = ($parent_term_title ? $parent_term_title : $variables['head_title']['title']);
+
+   // Transliterate and sanitize the title.
+   $clean_title = \Drupal::transliteration()->transliterate($title_before_cleaning);
+   // Replace whitespace.
+   $clean_title = str_replace(' ', '_', $clean_title);
+   // Remove remaining unsafe characters.
+   $clean_title = preg_replace('![^0-9A-Za-z_.-]!', '', $clean_title);
+   // Remove multiple consecutive non-alphabetical characters.
+   $clean_title = preg_replace('/(_)_+|(\.)\.+|(-)-+/', '\\1\\2\\3', $clean_title);
+   // Force lowercase to prevent issues on case-insensitive file systems.
+   $clean_title = strtolower($clean_title);
+
+   $variables['attributes']['class'][] = \Drupal\Component\Utility\Html::cleanCssIdentifier($clean_title);
+}
+*/
+
+/*
+function relkb_preprocess_block (&$variables) {
+    $variables['parent_term_image'] = '';
+    $parent_tid = 0;
+
+    // Stopping a specific block from being cached in Drupal 8
+    // http://purencool.com/how-to-stop-a-specific-block-from-being-cached-in-drupal-8
+    if($variables['derivative_plugin_id'] == 'category_icon') {
+        //-- This stops the block being cache in drupal 8
+        $variables['#cache']['max-age'] = 0;
+
+        // Find term's parent, and if no parent - the term itself
+        // Get the image that belong to that parent.
+        if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical') {
+            $term_id = \Drupal::routeMatch()->getRawParameter('taxonomy_term');
+            $ancestors = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadAllParents($term_id);
+
+            foreach ($ancestors as $term) {
+                $parent_tid = $term->id();
+            }
+
+            // Get term's image.
+            $term_load = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->load($parent_tid);
+            $parent_term_title = $term_load->getName();
+            // $variables['parent_term_title'] = $parent_term_title;
+            $parent_term_image_field = $term_load->get('field_tmwnt_qtgwryh');
+            $variables['parent_term_image'] = $parent_term_image_field;
+
+        }
+    }
+}
+*/
+
+
+/*
+function relkb_preprocess_page (&$variables) {
+  // Find term's parent, and if no parent - the term itself
+  // Get the image that belong to that parent.
+  if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical') {
+    $term_id = \Drupal::routeMatch()->getRawParameter('taxonomy_term');
+    $ancestors = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadAllParents($term_id);
+
+    foreach ($ancestors as $term) {
+      $parent_tid = $term->id();
+    }
+
+    // Get term's image.
+    $term_load = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->load($parent_tid);
+    // $parent_term_title = $term_load->getName();
+    $parent_term_image_field = $term_load->get('field_tmwnt_qtgwryh');
+    $variables['parent_term_image'] = $parent_term_image_field;
+  }
+}
+*/
+/*
+// find term's parent, and if no parent - the term itself
+// get the image that belong to that parent
+  if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical') {
+    $term_id = \Drupal::routeMatch()->getRawParameter('taxonomy_term');
+    $ancestors = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadAllParents($term_id);
+    foreach ($ancestors as $term) {
+      $parent_tid = $term->id();
+    }
+    $variables['parent_term'] = $parent_tid;
+
+    // get term's image
+    $term_load = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->load($parent_tid);
+    $parent_term_image_field = $term_load->get('field_tmwnt_qtgwryh');
+
+    $variables['parent_term_image'] = $parent_term_image_field;
+
+  }
+}
+*/
+
+/*
+// https://drupal.stackexchange.com/questions/192616/how-to-make-a-theme-hook-suggestion-for-blocks-according-to-region
+use Drupal\block\Entity\Block;
+
+function relkb_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+    if (!empty($variables['elements']['#id'])) {
+        $block = Block::load($variables['elements']['#id']);
+        $suggestions[] = 'block__' . $block->getRegion() . '__' . $variables['elements']['#id'];
+    }
+    // Use this 'else if' only if you are using page_manager module and want to know which region is the block
+    else if (isset($variables['elements']['#configuration']['region'])) {
+        $suggestions[] = 'block__page_' . $variables['elements']['#configuration']['region'] . '__' . end(explode(':', $variables['elements']['#plugin_id']));
+    }
+    return $suggestions;
+}
+*/
+
+
+/*
+function relkb_preprocess_region (&$variables) {
+
+  if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical') {
+     $term_id = \Drupal::routeMatch()->getRawParameter('taxonomy_term');
+
+    $term_children = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->loadChildren($term_id);
+
+    $variables['tterm_has_children'] = ($term_children ? TRUE : FALSE);
+  }
+
+
+   // https://drupal.stackexchange.com/questions/187519
+   $request = \Drupal::request();
+   $route_match = \Drupal::routeMatch();
+   if ($route_match->getParameter('node')) {
+     $page_title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+     $variables['my_node_title'] = $page_title;
+     // echo $page_title;
+   }
+
+   $node = \Drupal::routeMatch()->getParameter('node');
+   if ($node) {
+     $variables['nid'] = $node->id();
+   } else {
+     $variables['nid'] = 'not-a-node';
+   }
+   // echo $variables['nid'];
+
+}
+*/
+
+// https://drupal.stackexchange.com/questions/44323/adding-form-placeholders-to-text-input-fields
+/**
+ * Implements hook_form_alter
+ */
+
+/*
+function relkb_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    add_placeholders($form);
+}
+*/
+
+
+/**
+ * Add placeholders to suitable form elements -> textfield, password, email, textarea
+ */
+
+/*
+function add_placeholders(&$element) {
+    if(isset($element['#type']) && in_array($element['#type'], ['textfield', 'password', 'email', 'textarea'])) {
+        $element['#attributes']['placeholder'] = $element['#title'];
+    }
+    foreach(\Drupal\Core\Render\Element::children($element) as $key) {
+        add_placeholders($element[$key]);
+    }
+}
+
+*/
+
+/*
+ //https://drupal.stackexchange.com/a/189283
+ // Implements hook_views_pre_render().
+ function relkb_views_pre_render(ViewExecutable $view) {
+   if($view->id() == 'frontpage' && $view->current_display == 'page_1') {
+     // Use some or all of the following 3 lines to remove specific
+     // 'no results' behaviors
+     unset($view->empty['area_text_custom']);
+     unset($view->empty['node_listing_empty']);
+     unset($view->empty['title']);
+   }
+ }
+*/

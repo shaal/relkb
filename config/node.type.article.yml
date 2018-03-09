@@ -1,7 +1,13 @@
 uuid: 14980612-cfd7-4e77-bd99-f174259446a7
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - type_style
+third_party_settings:
+  type_style:
+    color: '#039BE5'
+    icon: book
 _core:
   default_config_hash: AeW1SEDgb1OTQACAWGhzvMknMYAJlcZu0jljfeU3oso
 name: Article
