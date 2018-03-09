@@ -1,0 +1,14 @@
+uuid: 8bba5ede-1231-48fc-89de-0b4375c321b1
+name: relkb
+mail: david.shaal@gmail.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
