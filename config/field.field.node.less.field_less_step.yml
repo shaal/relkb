@@ -1,0 +1,29 @@
+uuid: 6d90ff68-c2ec-4ad7-8f82-ef6dd71d5044
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_less_step
+    - node.type.less
+    - node.type.step
+id: node.less.field_less_step
+field_name: field_less_step
+entity_type: node
+bundle: less
+label: Step
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      step: step
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

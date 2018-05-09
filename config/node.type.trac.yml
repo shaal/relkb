@@ -1,0 +1,21 @@
+uuid: 3150f9f0-062b-48db-9067-335af08cd8e1
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - type_style
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  type_style:
+    color: '#000000'
+    icon: ''
+name: Track
+type: trac
+description: ''
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

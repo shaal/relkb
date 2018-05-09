@@ -1,0 +1,21 @@
+uuid: 00a73340-7de3-41ca-ba06-879c2d470f3f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - type_style
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  type_style:
+    color: '#000000'
+    icon: ''
+name: Step
+type: step
+description: ''
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

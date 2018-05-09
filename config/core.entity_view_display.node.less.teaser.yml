@@ -1,0 +1,18 @@
+uuid: e10099ba-147f-4510-b683-f5ad6b9a4c66
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.less
+  module:
+    - user
+id: node.less.teaser
+targetEntityType: node
+bundle: less
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden: {  }

@@ -1,0 +1,38 @@
+uuid: befaa472-7c3e-472b-a541-cb3b176d6479
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.less.field_less_desc
+    - field.field.node.less.field_less_step
+    - node.type.less
+  module:
+    - text
+    - user
+id: node.less.default
+targetEntityType: node
+bundle: less
+mode: default
+content:
+  field_less_desc:
+    weight: 101
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_less_step:
+    weight: 102
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

@@ -6,6 +6,7 @@ module:
   blazy: 0
   blazy_ui: 0
   block: 0
+  block_visibility_groups: 0
   breakpoint: 0
   checklistapi: 0
   ckeditor: 0
@@ -25,6 +26,9 @@ module:
   dynamic_page_cache: 0
   editor: 0
   embed: 0
+  entity_browser: 0
+  entity_browser_enhanced: 0
+  entity_reference_views_select: 0
   erd: 0
   field: 0
   field_group: 0
@@ -40,6 +44,8 @@ module:
   kint: 0
   link: 0
   material_admin_support: 0
+  media: 0
+  media_entity_browser: 0
   menu_ui: 0
   node: 0
   options: 0
@@ -69,6 +75,7 @@ module:
   unified_twig_ext: 0
   update: 0
   user: 0
+  video_embed_field: 0
   views_ui: 0
   webform: 0
   webform_ui: 0

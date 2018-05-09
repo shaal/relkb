@@ -1,0 +1,19 @@
+uuid: 858becb0-4e90-4a2c-8125-5e3c7b2e35eb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_trac_sect
+field_name: field_trac_sect
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

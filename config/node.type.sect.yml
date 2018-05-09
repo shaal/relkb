@@ -1,0 +1,21 @@
+uuid: 6b6e9e53-e95d-48dd-9c81-4357663e6e8a
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - type_style
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  type_style:
+    color: '#000000'
+    icon: ''
+name: Section
+type: sect
+description: ''
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

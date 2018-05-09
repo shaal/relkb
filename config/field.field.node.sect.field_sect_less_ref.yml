@@ -1,0 +1,29 @@
+uuid: ed1cb46c-04aa-4e1d-a045-b3c22dfb406f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sect_less_ref
+    - node.type.less
+    - node.type.sect
+id: node.sect.field_sect_less_ref
+field_name: field_sect_less_ref
+entity_type: node
+bundle: sect
+label: Lesson
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      less: less
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

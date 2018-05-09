@@ -1,0 +1,22 @@
+uuid: d56cbf5f-a44b-4109-b582-4cc166a48619
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.trac
+id: node.trac.promote
+field_name: promote
+entity_type: node
+bundle: trac
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

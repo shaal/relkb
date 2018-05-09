@@ -1,0 +1,25 @@
+uuid: 01cedc51-85d9-4e80-93de-080f7dbeeb41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_step_video
+    - node.type.step
+  module:
+    - video_embed_field
+id: node.step.field_step_video
+field_name: field_step_video
+entity_type: node
+bundle: step
+label: Video
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_providers:
+    vimeo: '0'
+    youtube: '0'
+    youtube_playlist: '0'
+field_type: video_embed_field

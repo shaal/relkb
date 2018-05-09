@@ -1,0 +1,21 @@
+uuid: ba806586-3a54-4f81-8de3-aae2e79b59cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_less_desc
+    - node.type.less
+  module:
+    - text
+id: node.less.field_less_desc
+field_name: field_less_desc
+entity_type: node
+bundle: less
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

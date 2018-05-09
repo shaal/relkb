@@ -1,0 +1,35 @@
+uuid: 59cd1a82-2575-462c-8022-aabc08c856dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.sect.field_sect_desc
+    - field.field.node.sect.field_sect_less_ref
+    - node.type.sect
+  module:
+    - text
+    - user
+id: node.sect.default
+targetEntityType: node
+bundle: sect
+mode: default
+content:
+  field_sect_desc:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_sect_less_ref:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }
