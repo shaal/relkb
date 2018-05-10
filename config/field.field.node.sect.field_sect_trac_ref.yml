@@ -1,16 +1,16 @@
-uuid: 6d90ff68-c2ec-4ad7-8f82-ef6dd71d5044
+uuid: 5805e023-4d8a-4334-87ab-2124c556c3dd
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_less_step
-    - node.type.less
-    - node.type.step
-id: node.less.field_less_step
-field_name: field_less_step
+    - field.storage.node.field_sect_trac_ref
+    - node.type.sect
+    - node.type.trac
+id: node.sect.field_sect_trac_ref
+field_name: field_sect_trac_ref
 entity_type: node
-bundle: less
-label: Steps
+bundle: sect
+label: Track
 description: ''
 required: true
 translatable: false
@@ -20,7 +20,7 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
-      step: step
+      trac: trac
     sort:
       field: title
       direction: ASC

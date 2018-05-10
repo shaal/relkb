@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.sect.field_sect_desc
     - field.field.node.sect.field_sect_less_ref
+    - field.field.node.sect.field_sect_trac_ref
     - node.type.sect
   module:
     - inline_entity_form
@@ -15,7 +16,7 @@ bundle: sect
 mode: default
 content:
   field_sect_desc:
-    weight: 1
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -23,7 +24,7 @@ content:
     type: text_textarea
     region: content
   field_sect_less_ref:
-    weight: 2
+    weight: 3
     settings:
       form_mode: default
       label_singular: ''
@@ -35,11 +36,17 @@ content:
     third_party_settings: {  }
     type: inline_entity_form_complex
     region: content
+  field_sect_trac_ref:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 3
+    weight: 4
     region: content
     third_party_settings: {  }
   title:

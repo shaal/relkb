@@ -1,0 +1,19 @@
+uuid: 2bb69f35-ada4-4351-a76e-f03597f06d70
+langcode: en
+status: true
+dependencies: {  }
+id: editor
+label: Editor
+weight: 3
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'create less content'
+  - 'create sect content'
+  - 'create step content'
+  - 'create trac content'
+  - 'edit own less content'
+  - 'edit own sect content'
+  - 'edit own step content'
+  - 'edit own trac content'
+  - 'view the administration theme'

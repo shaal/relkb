@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.media_entity_browser
     - field.field.node.step.field_step_img
+    - field.field.node.step.field_step_less_ref
     - field.field.node.step.field_step_text
     - field.field.node.step.field_step_video
     - node.type.step
@@ -21,7 +22,7 @@ third_party_settings:
         - group_image
         - group_video
       parent_name: ''
-      weight: 1
+      weight: 2
       format_type: tabs
       format_settings:
         id: ''
@@ -89,6 +90,12 @@ content:
     third_party_settings: {  }
     type: entity_browser_file
     region: content
+  field_step_less_ref:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_step_text:
     weight: 3
     settings:
@@ -107,7 +114,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 4
+    weight: 3
     region: content
     third_party_settings: {  }
   title:

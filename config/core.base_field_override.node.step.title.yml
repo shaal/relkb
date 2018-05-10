@@ -1,0 +1,18 @@
+uuid: 95aab99c-d896-4790-9a0d-997c309e921e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.step
+id: node.step.title
+field_name: title
+entity_type: node
+bundle: step
+label: 'Step Title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

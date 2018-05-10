@@ -1,0 +1,18 @@
+uuid: f89417d3-88ed-4819-aee8-39a58fa2190d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.trac
+id: node.trac.title
+field_name: title
+entity_type: node
+bundle: trac
+label: 'Track Title'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

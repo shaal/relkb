@@ -1,16 +1,16 @@
-uuid: 6d90ff68-c2ec-4ad7-8f82-ef6dd71d5044
+uuid: 88cea11c-322c-4844-b052-0dc9ac51089a
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_less_step
+    - field.storage.node.field_step_less_ref
     - node.type.less
     - node.type.step
-id: node.less.field_less_step
-field_name: field_less_step
+id: node.step.field_step_less_ref
+field_name: field_step_less_ref
 entity_type: node
-bundle: less
-label: Steps
+bundle: step
+label: Lesson
 description: ''
 required: true
 translatable: false
@@ -20,9 +20,9 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
-      step: step
+      less: less
     sort:
-      field: title
+      field: field_sect_less_ref
       direction: ASC
     auto_create: false
     auto_create_bundle: ''

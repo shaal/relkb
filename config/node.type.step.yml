@@ -14,7 +14,7 @@ third_party_settings:
     icon: ''
 name: Step
 type: step
-description: ''
+description: 'Choose one of Text / Image / Video'
 help: ''
 new_revision: false
 preview_mode: 0
